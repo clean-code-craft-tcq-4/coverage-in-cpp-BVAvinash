@@ -19,9 +19,9 @@ TEST_CASE("classify temperate breach") {
 }
 
 TEST_CASE("check and alert function") {
-  REQUIRE(checkAndAlert(TO_CONTROLLER, PASSIVE_COOLING, 25) == NORMAL);
-  REQUIRE(checkAndAlert(TO_EMAIL, PASSIVE_COOLING, 25) == NORMAL);
-  REQUIRE(checkAndAlert(TO_CONTROLLER, PASSIVE_COOLING, 36) == TOO_HIGH);
-  REQUIRE(checkAndAlert(TO_EMAIL, PASSIVE_COOLING, 36) == TOO_HIGH);
-  REQUIRE(checkAndAlert(TO_CONTROLLER, PASSIVE_COOLING, -30) == TOO_LOW);
+  REQUIRE(checkAndAlert(TO_CONTROLLER, 0, 25) == NORMAL);
+  REQUIRE(checkAndAlert(TO_EMAIL, 0, 25) == NORMAL);
+  REQUIRE(checkAndAlert(TO_CONTROLLER, 0, 36) == TOO_HIGH);
+  REQUIRE(checkAndAlert(TO_EMAIL, 0, 36) == TOO_HIGH);
+  REQUIRE(checkAndAlert(TO_CONTROLLER, 0, -30) == TOO_LOW);
 }
