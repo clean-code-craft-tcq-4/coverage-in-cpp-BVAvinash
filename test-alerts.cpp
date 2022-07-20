@@ -18,7 +18,7 @@ TEST_CASE("classify temperate breach") {
   REQUIRE(classifyTemperatureBreach(MED_ACTIVE_COOLING, 41) == TOO_HIGH);
 }
 
-TEST_CASE("Test checkAndAlert(to email)") {
+TEST_CASE("Test checkAndAlert(to email too high)") {
 
   BatteryCharacter batterych = {
     .coolingType = HI_ACTIVE_COOLING
@@ -33,6 +33,24 @@ TEST_CASE("Test checkAndAlert(to email)") {
   //restore out stream
   std::cout.rdbuf(streambuf_1);
   REQUIRE(toEmail.str() == "To: a.b@c.com\nHi, the temperature is too high\n");
+
+}
+
+TEST_CASE("Test checkAndAlert(to email too low)") {
+
+  BatteryCharacter batterych = {
+    .coolingType = HI_ACTIVE_COOLING
+  };
+
+  std::ostringstream toEmail;
+  std::streambuf* streambuf_1 = std::cout.rdbuf();
+  std::cout.rdbuf(toEmail.rdbuf());
+
+  checkAndAlert(TO_EMAIL, batterych, -10);
+  
+  //restore out stream
+  std::cout.rdbuf(streambuf_1);
+  REQUIRE(toEmail.str() == "To: a.b@c.com\nHi, the temperature is too low\n");
 
 }
 
