@@ -28,11 +28,11 @@ TEST_CASE("Test checkAndAlert(to email)") {
   std::streambuf* streambuf_1 = std::cout.rdbuf();
   std::cout.rdbuf(toEmail.rdbuf());
 
-  checkAndAlert(TO_EMAIL, batterych, 20);
+  checkAndAlert(TO_EMAIL, batterych, 46);
   
   //restore out stream
   std::cout.rdbuf(streambuf_1);
-  REQUIRE(toEmail.str() == "To: a.b@c.com\nHi, the temperature is normal\n");
+  REQUIRE(toEmail.str() == "To: a.b@c.com\nHi, the temperature is too high\n");
 
 }
 
