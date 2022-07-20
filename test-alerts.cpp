@@ -37,8 +37,7 @@ TEST_CASE("Test checkAndAlert(to email)") {
   BatteryCharacter batterych_PC = {
     .coolingType = PASSIVE_COOLING
   };
-
-  std::ostringstream toEmail;
+  
   std::streambuf* streambuf_2 = std::cout.rdbuf();
   std::cout.rdbuf(toEmail.rdbuf());
 
