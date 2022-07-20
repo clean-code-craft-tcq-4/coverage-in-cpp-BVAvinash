@@ -19,9 +19,13 @@ TEST_CASE("classify temperate breach") {
 }
 
 TEST_CASE("check and alert function") {
-  REQUIRE(checkAndAlert(TO_CONTROLLER, 0, 25) == NORMAL);
-  REQUIRE(checkAndAlert(TO_EMAIL, 0, 25) == NORMAL);
-  REQUIRE(checkAndAlert(TO_CONTROLLER, 0, 36) == TOO_HIGH);
-  REQUIRE(checkAndAlert(TO_EMAIL, 0, 36) == TOO_HIGH);
-  REQUIRE(checkAndAlert(TO_CONTROLLER, 0, -30) == TOO_LOW);
+  BatteryCharacter batterych = {
+    .coolingType = PASSIVE_COOLING
+  };
+  
+  REQUIRE(checkAndAlert(TO_CONTROLLER, batterych, 25) == NORMAL);
+  REQUIRE(checkAndAlert(TO_EMAIL, batterych, 25) == NORMAL);
+  REQUIRE(checkAndAlert(TO_CONTROLLER, batterych, 36) == TOO_HIGH);
+  REQUIRE(checkAndAlert(TO_EMAIL, batterych, 36) == TOO_HIGH);
+  REQUIRE(checkAndAlert(TO_CONTROLLER, batterych, -30) == TOO_LOW);
 }
