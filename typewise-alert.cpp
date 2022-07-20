@@ -50,19 +50,19 @@ void checkAndAlert(
 
 void sendToController(BreachType breachType) {
   const unsigned short header = 0xfeed;
-  os << header << " : " << breachType << std::endl;
+  std::cout << header << " : " << breachType << std::endl;
 }
 
 void sendToEmail(BreachType breachType) {
   const char* recepient = "a.b@c.com";
   switch(breachType) {
     case TOO_LOW:
-      os << "To: " << recepient << std::endl;
-      os << "Hi, the temperature is too low" << std::endl;
+      std::cout << "To: " << recepient << std::endl;
+      std::cout << "Hi, the temperature is too low" << std::endl;
       break;
     case TOO_HIGH:
-      os << "To: " << recepient << std::endl;
-      os << "Hi, the temperature is too high" << std::endl;
+      std::cout << "To: " << recepient << std::endl;
+      std::cout << "Hi, the temperature is too high" << std::endl;
       break;
     default:
       break;
